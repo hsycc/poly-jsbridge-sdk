@@ -4,7 +4,8 @@
   "description": "A simple jsbridge protocol scheme.",
   "main": "dist/esm/index.js",
   "scripts": {
-    "build": "npm run clean && tsc -p  tsconfig.json  && tsc -p  tsconfig.esm.json",
+    "build-browser": "webpack --config webpack.debug.js && webpack --config webpack.prod.js",
+    "build": "npm run clean && tsc -p  tsconfig.json  && tsc -p  tsconfig.esm.json && npm run build-browser",
     "clean": "rm -rf ./dist"
   },
   "keywords": [
@@ -26,6 +27,9 @@
   "devDependencies": {
     "@types/node": "^16.11.7",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "ts-loader": "^9.2.3",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2"
   }
 }
