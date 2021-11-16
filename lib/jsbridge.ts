@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-09-21 18:22:19
- * @LastEditTime: 2021-11-16 10:38:20
+ * @LastEditTime: 2021-11-16 16:27:47
  * @Description:
  *
  */
@@ -212,10 +212,9 @@ class Jsbridge {
           iframe.parentNode?.removeChild(iframe);
           iframe = null;
         }
-        // reset the tryTime to 0
-        this.tryTimes = 0;
+        // reset the tryTime to first
+        this.tryTimes = 1;
       } catch (error) {
-        
         // per second will attempt to reinvoke, failed over  maxTryTimes will never reinvoked again
         if (this.tryTimes < this.config.maxTryTimes) {
           setTimeout(() => {
@@ -223,7 +222,7 @@ class Jsbridge {
             this.tryTimes = ++this.tryTimes;
           }, 1000);
         } else {
-          console.error(`post msg timeout( ${this.config.maxTryTimes} times):`, msg);
+          throw new Error(`post msg timeout( ${this.config.maxTryTimes} times): ${msg} \n , error: ${error}`);
         }
       }
     } else {

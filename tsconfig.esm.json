@@ -1,9 +1,8 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["lib/index.ts"],
   "compilerOptions": {
-    "target": "es2015",
-    "module": "es2020",
+    "target": "esnext",
+    "module": "esnext",
     "outDir": "./dist/esm"
   }
 }

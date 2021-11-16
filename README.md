@@ -2,5 +2,9 @@
 # easy-js-sdk
 
 A simple jsbridge protocol scheme.
-S
+
 Support with JavascriptChannel and navigationDelegate.
+
+
+
+// eval(`window.$jsbridge.log(JSON.parse('{"a":1}'))`);
