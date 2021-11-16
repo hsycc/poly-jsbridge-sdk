@@ -1,0 +1,46 @@
+{
+  "name": "easy-js-brigde",
+  "version": "1.0.0",
+  "description": "A simple jsbridge protocol scheme.",
+  "main": "dist/cjs/lib",
+  "scripts": {
+    "test": "npm run test:dev && npm run test:cjs && npm run test:esm",
+    "test:dev": "mocha --bail --exit  --reporters spec  --require ts-node/register  tests/*.test.ts",
+    "test:cjs": "mocha --bail --exit  --reporters spec dist/cjs/tests/*.js",
+    "test:esm": "mocha --bail --exit  --reporters spec  --require ts-node/register dist/esm/tests/*.js",
+    "build-browser": "webpack --config webpack.dev.js && webpack --config webpack.prod.js",
+    "build": "npm run clean && tsc -p  tsconfig.json  && tsc -p  tsconfig.esm.json && npm run build-browser",
+    "clean": "rm -rf ./dist"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "hsycc",
+  "license": "Apache Licence 2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsycc/easy-js-brigde.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hsycc/easy-js-brigde/issues"
+  },
+  "homepage": "https://github.com/hsycc/easy-js-brigde#readme",
+  "dependencies": {
+    "copy-webpack-plugin": "^9.1.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.19",
+    "@types/jsdom": "^16.2.13",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^16.11.7",
+    "chai": "^4.3.4",
+    "jsdom": "^18.1.0",
+    "mocha": "^9.0.1",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
