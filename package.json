@@ -1,0 +1,31 @@
+{
+  "name": "easy-js-brigde",
+  "version": "1.0.0",
+  "description": "A simple jsbridge protocol scheme.",
+  "main": "dist/esm/index.js",
+  "scripts": {
+    "build": "npm run clean && tsc -p  tsconfig.json  && tsc -p  tsconfig.esm.json",
+    "clean": "rm -rf ./dist"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "hsycc",
+  "license": "Apache Licence 2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsycc/easy-js-brigde.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hsycc/easy-js-brigde/issues"
+  },
+  "homepage": "https://github.com/hsycc/easy-js-brigde#readme",
+  "dependencies": {
+   
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
+  }
+}

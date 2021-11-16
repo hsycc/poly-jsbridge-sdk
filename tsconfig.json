@@ -1,0 +1,23 @@
+{
+  /* Visit https://aka.ms/tsconfig.json to read more about this file */
+  "include": ["lib/index.ts"],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "alwaysStrict": true ,
+    "strict": true,
+    "esModuleInterop": true /* “allowSyntheticDefaultImports”  */,
+    "declaration": true,
+    "outDir": "./dist/cjs",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
+    "moduleResolution": "node" ,
+    "removeComments": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "lib": ["es2017", "dom"]
+  }
+}
