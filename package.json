@@ -4,6 +4,7 @@
   "description": "A simple jsbridge protocol scheme.",
   "main": "dist/cjs/lib",
   "scripts": {
+    "cover": "istanbul cover npm run test",
     "test": "npm run test:dev && npm run test:cjs && npm run test:esm",
     "test:dev": "mocha --bail --exit  --reporters spec  --require ts-node/register  tests/*.test.ts",
     "test:cjs": "mocha --bail --exit  --reporters spec dist/cjs/tests/*.js",
@@ -41,6 +42,8 @@
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4",
     "webpack": "^5.40.0",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "coveralls": "^3.1.0",
+    "istanbul": "^0.4.5"
   }
 }
