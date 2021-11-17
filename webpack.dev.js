@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-11-16 10:52:03
- * @LastEditTime: 2021-11-16 17:38:33
+ * @LastEditTime: 2021-11-17 12:51:08
  * @Description: 
  * 
  */
@@ -12,7 +12,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    'EasyJsSdk': './lib/index.ts',
+    'EasyJsbridgeSdk': './index.ts',
   }, 
   module: {
     rules: [

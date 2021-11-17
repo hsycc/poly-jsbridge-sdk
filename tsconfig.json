@@ -1,6 +1,6 @@
 {
   /* Visit https://aka.ms/tsconfig.json to read more about this file */
-  "include": ["lib/index.ts", "tests/*.ts"],
+  "include": ["./index.ts", "lib", "tests"],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -8,7 +8,7 @@
     "strict": true,
     "esModuleInterop": true /* “allowSyntheticDefaultImports”  */,
     "declaration": true,
-    "outDir": "./dist/cjs",
+    "outDir": "./dist",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,

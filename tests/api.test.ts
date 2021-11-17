@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-11-16 11:36:30
- * @LastEditTime: 2021-11-16 15:31:06
+ * @LastEditTime: 2021-11-17 14:00:46
  * @Description:
  *
  */
@@ -9,7 +9,7 @@
 'use strict';
 import { assert } from 'chai';
 import { JSDOM } from 'jsdom';
-import EasyJsSdk from '../lib';
+import EasyJsbridgeSdk from '../lib/sdk';
 import { SendModeEnum } from '../lib/type';
 
 // add browser env
@@ -23,7 +23,7 @@ window.AppSdk = {
     return msg;
   },
 };
-const easyJsSdk = new EasyJsSdk({
+const easyJsbridgeSdk = new EasyJsbridgeSdk({
   mode: SendModeEnum.CHANNEL,
   maxTryTimes: 3,
   isDebug: true,
@@ -33,14 +33,14 @@ const easyJsSdk = new EasyJsSdk({
 
 describe('check api list', () => {
   it('toast', () => {
-    assert(easyJsSdk.toast('say hello', true))
+    assert(easyJsbridgeSdk.toast('say hello', true))
   });
 
   it('print', () => {
-    assert(easyJsSdk.print('print hello', true))
+    assert(easyJsbridgeSdk.print('print hello', true))
   });
 
   it('exitApp', () => {
-    assert(easyJsSdk.exitApp())
+    assert(easyJsbridgeSdk.exitApp())
   });
 });

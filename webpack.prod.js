@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-06-28 18:52:24
- * @LastEditTime: 2021-11-16 17:39:31
+ * @LastEditTime: 2021-11-17 12:51:30
  * @Description:
  *
  */
@@ -26,56 +26,13 @@ module.exports = merge(devConfig, {
       patterns: [
         {
           from: path.resolve(__dirname, 'tests/*.html'),
-          to: path.resolve(__dirname, 'dist/browser/'),
+          to: path.resolve(__dirname, 'dist/'),
         },
         {
           from: path.resolve(__dirname, 'tests/*.css'),
-          to: path.resolve(__dirname, 'dist/browser/'),
+          to: path.resolve(__dirname, 'dist/'),
         },
       ],
     }),
   ],
 });
-// module.exports = {
-//   module: {
-//     rules: [
-//       {
-//         test: /\.tsx?$/,
-//         use: {
-//           loader: 'ts-loader',
-//           options: {
-//             configFile: 'tsconfig.json',
-//           },
-//         },
-//         exclude: /node_modules/,
-//       },
-//     ],
-//   },
-//   resolve: {
-//     extensions: ['.tsx', '.ts', '.js'],
-//   },
-//   output: {
-//     filename: (x) =>
-//       x.chunk.name.replace(/^\S/, (s) => s.toLowerCase()) + '.min.js',
-//     library: '[name]',
-//     path: path.resolve(__dirname, 'dist/browser'),
-//   },
-//   mode: 'production',
-//   plugins: [
-//     new CopyPlugin({
-//       patterns: [
-//         {
-//           from: path.resolve(__dirname, 'tests/*.html'),
-//           to: path.resolve(__dirname, 'dist/browser/'),
-//         },
-//         {
-//           from: path.resolve(__dirname, 'tests/*.css'),
-//           to: path.resolve(__dirname, 'dist/browser/'),
-//         },
-//       ],
-//     }),
-//   ],
-//   entry: {
-//     EasyJsSdk: './lib/index.ts',
-//   },
-// };

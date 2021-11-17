@@ -71,9 +71,9 @@ class Jsbridge {
         this.sendMessage(message);
       });
     } else {
-      console.error('does not support easy-js-sdk');
+      console.error('does not support easy-jsbridge-sdk');
       return new Promise((resolve, reject) => {
-        reject('does not support easy-js-sdk');
+        reject('does not support easy-jsbridge-sdk');
       });
     }
   }

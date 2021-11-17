@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-09-21 18:16:35
- * @LastEditTime: 2021-11-16 11:38:13
+ * @LastEditTime: 2021-11-17 12:48:44
  * @Description:ts
  *
  */
@@ -10,7 +10,7 @@ import { defaultConfig } from './config';
 import Jsbridge from './jsbridge';
 import type { ClientResponse, Config } from './type';
 
-class EasyJsSdk {
+class EasyJsbridgeSdk {
   $jsbridge: Jsbridge;
   $register: (name: string) => void;
   $off: (name: string, func?: any) => any;
@@ -91,5 +91,5 @@ class EasyJsSdk {
   }
 }
 
-export type { EasyJsSdk };
-export default EasyJsSdk;
+export type { EasyJsbridgeSdk };
+export default EasyJsbridgeSdk;
