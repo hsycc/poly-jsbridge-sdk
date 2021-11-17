@@ -25,7 +25,7 @@ describe('init EasyJsbridgeSdk', () => {
         return msg;
       },
     };
-    const easyJsbridgeSdk = new EasyJsbridgeSdk({
+    const easyJsbridgeSdk: EasyJsbridgeSdk = new EasyJsbridgeSdk({
       mode: SendModeEnum.CHANNEL,
       maxTryTimes: 3,
       isDebug: true,
@@ -36,7 +36,7 @@ describe('init EasyJsbridgeSdk', () => {
   });
 
   it('Mode navigationDelegate', () => {
-    const easyJsbridgeSdk = new EasyJsbridgeSdk({
+    const easyJsbridgeSdk: EasyJsbridgeSdk = new EasyJsbridgeSdk({
       mode: SendModeEnum.URL,
       maxTryTimes: 3,
       isDebug: true,

@@ -23,7 +23,7 @@ window.AppSdk = {
     return msg;
   },
 };
-const easyJsbridgeSdk = new EasyJsbridgeSdk({
+const easyJsbridgeSdk: EasyJsbridgeSdk = new EasyJsbridgeSdk({
   mode: SendModeEnum.CHANNEL,
   maxTryTimes: 3,
   isDebug: true,

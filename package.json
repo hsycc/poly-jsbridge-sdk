@@ -6,7 +6,7 @@
   "browser": "browser/easyJsbridgeSdk.min.js",
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec dist/tests/*.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec dist/tests/*.js",
     "test:dev": "mocha --bail --exit  --reporters spec  --require ts-node/register  tests/*.test.ts",
     "test": "mocha --bail --exit  --reporters spec dist/tests/*.js",
     "build-browser": "webpack --config webpack.dev.js && webpack --config webpack.prod.js",

@@ -31,8 +31,8 @@ jobs:
     - run: npm run cover
     - name: Coveralls
       uses: coverallsapp/github-action@v1.1.0
-      env:
-        NODE_COVERALLS_DEBUG: 1
+      # env:
+        # NODE_COVERALLS_DEBUG: 1
       with:
         github-token: ${{ secrets.github_token }}
         parallel: true
