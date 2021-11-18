@@ -221,7 +221,7 @@ await webController.evaluateJavascript("window.$jsbridge.$log2(${your log});");
 
 ```
 
-## app jsbrigde principle / app 桥接实现
+## app jsbridge principle / app 桥接实现
 
 complete parallel example : see [poly-webview-flutter-jsbridge-demo](https://github.com/hsycc/poly-webview-flutter-jsbridge-demo)
 

@@ -8,7 +8,7 @@
 
 import { Config, ClientResponse, SendModeEnum } from './type';
 
-const EventEmitter = require('events');
+import EventEmitter from 'events';
 
 class Jsbridge {
   public config: Config;
@@ -22,7 +22,11 @@ class Jsbridge {
   }
 
   /** call message and send to client */
-  public $call(method: string, payload: object, hasCallback: boolean | string): Promise<ClientResponse> {
+  public $call(
+    method: string,
+    payload: Record<string, unknown>,
+    hasCallback: boolean | string,
+  ): Promise<ClientResponse> {
     payload = payload || {};
     // in browser
     if (this.isInBrowser) {
@@ -94,13 +98,13 @@ class Jsbridge {
   public $register(name: string): void {
     const ar: string[] = name.split('.');
     const len: number = ar.length;
-    let obj = this;
+    let obj: any = this;
     const eventName = ar.join('_');
 
     ar.forEach((el, idx) => {
       if (idx === len - 1) {
         // @ts-ignore
-        obj[el] = (json: any) => {
+        obj[el] = (json: Record<string, unknown>) => {
           this.event.emit(eventName, json);
         };
       } else {
@@ -118,7 +122,7 @@ class Jsbridge {
    *   or
    *   poly://toast?payload=%7B%22message%22%3A%22say%20hello%22%7D?callbackId=poly_sdk_callback_163699755451280
    */
-  private generateMessage(method: string, payload: object | {}, callbackId?: string): string {
+  private generateMessage(method: string, payload: Record<string, unknown>, callbackId?: string): string {
     if (this.config.mode === SendModeEnum.CHANNEL) {
       const message = {
         method,
@@ -150,7 +154,7 @@ class Jsbridge {
    * Parse Javascript Object to params String
    * `JSON.stringify() -> encodeURIComponent()`
    */
-  private encode(obj: object): string {
+  private encode(obj: Record<string, unknown>): string {
     const json = JSON.stringify(obj);
     return encodeURIComponent(json);
   }
@@ -161,7 +165,7 @@ class Jsbridge {
    * Parse url params data to string
    * `decodeURIComponent() -> JSON.parse()`
    */
-  private decode(str: string): object {
+  private decode(str: string): Record<string, unknown> {
     // const decodeURL = atob(str);
     const jsonStr = decodeURIComponent(str);
     return JSON.parse(jsonStr);

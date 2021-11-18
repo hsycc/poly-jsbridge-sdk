@@ -15,7 +15,7 @@ class PolyJsbridgeSdk {
   $register: (name: string) => void;
   $off: (name: string, func?: any) => any;
   $on: (name: string, func: any) => any;
-  $call: (method: string, payload: object, hasCallback: boolean | string) => Promise<any>;
+  $call: (method: string, payload: Record<string, unknown>, hasCallback: boolean | string) => Promise<any>;
 
   constructor(config?: Config) {
     config = Object.assign(defaultConfig, config || {});
@@ -70,7 +70,10 @@ class PolyJsbridgeSdk {
    * @param hasCallback
    */
 
-  public log(message: any, hasCallback: boolean | string = false): Promise<ClientResponse> | null {
+  public log(
+    message: string | Record<string, unknown>,
+    hasCallback: boolean | string = false,
+  ): Promise<ClientResponse> | null {
     return this.$jsbridge.$call(
       'log',
       {
