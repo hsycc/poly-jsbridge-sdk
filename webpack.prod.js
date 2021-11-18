@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-06-28 18:52:24
- * @LastEditTime: 2021-11-17 12:51:30
+ * @LastEditTime: 2021-11-18 13:59:53
  * @Description:
  *
  */
@@ -30,6 +30,14 @@ module.exports = merge(devConfig, {
         },
         {
           from: path.resolve(__dirname, 'tests/*.css'),
+          to: path.resolve(__dirname, 'dist/'),
+        },
+        {
+          from: path.resolve(__dirname, 'README.md'),
+          to: path.resolve(__dirname, 'dist/'),
+        },
+        {
+          from: path.resolve(__dirname, 'CHANGELOG.md'),
           to: path.resolve(__dirname, 'dist/'),
         },
       ],

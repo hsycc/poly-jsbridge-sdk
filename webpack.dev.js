@@ -12,7 +12,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: {
-    'EasyJsbridgeSdk': './index.ts',
+    'PolyJsbridgeSdk': './index.ts',
   }, 
   module: {
     rules: [

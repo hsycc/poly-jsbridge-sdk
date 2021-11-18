@@ -2,10 +2,10 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="./web.test.css" />
-  
-    <script src="../easyJsbridgeSdk.js"></script>
 
-    <script src="../dist/browser/easyJsbridgeSdk.js"></script>
+    <script src="../polyJsbridgeSdk.js"></script>
+
+    <script src="../dist/browser/polyJsbridgeSdk.js"></script>
     <script>
       function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -25,23 +25,23 @@
 
       let mode = getUrlParameter('mode') || 'channel';
 
-      let easyJsbridgeSdk;
+      let polyJsbridgeSdk;
 
-      if (mode === 'url') {
-        easyJsbridgeSdk = new EasyJsbridgeSdk.default({
-          mode: 'url',
-          maxTryTimes: 3,
-          isDebug: true,
-          protocol: 'flutter://',
-          JavascriptChannelName: '',
-        });
-      } else {
-        easyJsbridgeSdk = new EasyJsbridgeSdk.default({
+      if (mode === 'channel') {
+        polyJsbridgeSdk = new PolyJsbridgeSdk.default({
           mode: 'channel',
           maxTryTimes: 3,
           isDebug: true,
           protocol: '',
-          JavascriptChannelName: 'AppSdk',
+          JavascriptChannelName: 'PolySdk',
+        });
+      } else {
+        polyJsbridgeSdk = new PolyJsbridgeSdk.default({
+          mode: 'url',
+          maxTryTimes: 3,
+          isDebug: true,
+          protocol: 'poly://',
+          JavascriptChannelName: '',
         });
       }
 
@@ -59,21 +59,113 @@
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
-          const response = await easyJsbridgeSdk.toast('say hello', true);
-          if (response.code == 200) {
-            resultsLabel.className = 'success';
-            resultsLabel.innerText = SUCCESS;
-            return true;
-          } else {
-            resultsLabel.className = 'failed';
-            resultsLabel.innerText = FAILED;
-            console.error('easyJsbridgeSdk toast Failure: ', response.message);
-            return false;
-          }
+          await polyJsbridgeSdk.toast('say hello');
+          resultsLabel.className = 'success';
+          resultsLabel.innerText = SUCCESS;
+          return true;
         } catch (error) {
           resultsLabel.className = 'failed';
           resultsLabel.innerText = FAILED;
-          console.error('easyJsbridgeSdk toast Failure: ', error);
+          console.error('polyJsbridgeSdk toast Failure: ', error);
+          return false;
+        }
+      };
+
+      const testLog = async (e) => {
+        resultsLabel = e.target;
+        resultsLabel.innerText = EXECUTING;
+        try {
+          await polyJsbridgeSdk.log('log hello');
+          resultsLabel.className = 'success';
+          resultsLabel.innerText = SUCCESS;
+          return true;
+        } catch (error) {
+          resultsLabel.className = 'failed';
+          resultsLabel.innerText = FAILED;
+          console.error('polyJsbridgeSdk log Failure: ', error);
+          return false;
+        }
+      };
+
+      const testGetResgiterList = async (e) => {
+        resultsLabel = e.target;
+        resultsLabel.innerText = EXECUTING;
+        try {
+          const res = await polyJsbridgeSdk.getResgiterList();
+          resultsLabel.className = 'success';
+          resultsLabel.innerText = SUCCESS;
+          console.log(res);
+          return true;
+        } catch (error) {
+          resultsLabel.className = 'failed';
+          resultsLabel.innerText = FAILED;
+          console.error('polyJsbridgeSdk getResgiterList Failure: ', error);
+          return false;
+        }
+      };
+
+      const testNavigatorTo = async (e) => {
+        resultsLabel = e.target;
+        resultsLabel.innerText = EXECUTING;
+        try {
+          await polyJsbridgeSdk.navigatorTo('/demo');
+          resultsLabel.className = 'success';
+          resultsLabel.innerText = SUCCESS;
+          return true;
+        } catch (error) {
+          resultsLabel.className = 'failed';
+          resultsLabel.innerText = FAILED;
+          console.error('polyJsbridgeSdk navigatorTo Failure: ', error);
+          return false;
+        }
+      };
+
+      const testRedirectTo = async (e) => {
+        resultsLabel = e.target;
+        resultsLabel.innerText = EXECUTING;
+        try {
+          await polyJsbridgeSdk.redirectTo('/demo');
+          resultsLabel.className = 'success';
+          resultsLabel.innerText = SUCCESS;
+          return true;
+        } catch (error) {
+          resultsLabel.className = 'failed';
+          resultsLabel.innerText = FAILED;
+          console.error('polyJsbridgeSdk redirectTo Failure: ', error);
+          return false;
+        }
+      };
+
+      const testNavigatorBack = async (e) => {
+        resultsLabel = e.target;
+        resultsLabel.innerText = EXECUTING;
+        try {
+          await polyJsbridgeSdk.navigatorBack('/demo');
+          resultsLabel.className = 'success';
+          resultsLabel.innerText = SUCCESS;
+          return true;
+        } catch (error) {
+          resultsLabel.className = 'failed';
+          resultsLabel.innerText = FAILED;
+          console.error('polyJsbridgeSdk navigatorBack Failure: ', error);
+          return false;
+        }
+      };
+
+
+
+      const testExitApp = async (e) => {
+        resultsLabel = e.target;
+        resultsLabel.innerText = EXECUTING;
+        try {
+          await polyJsbridgeSdk.exitApp();
+          resultsLabel.className = 'success';
+          resultsLabel.innerText = SUCCESS;
+          return true;
+        } catch (error) {
+          resultsLabel.className = 'failed';
+          resultsLabel.innerText = FAILED;
+          console.error('polyJsbridgeSdk exitApp Failure: ', error);
           return false;
         }
       };
@@ -89,9 +181,43 @@
     </div>
     <div class="tests">
       <div>
-        <h2>easyJsBrigde toast</h2>
+        <h2>polyJsbridgeSdk.toast</h2>
         <button onClick="testToast(event);">Test</button>
       </div>
+
+      <div>
+        <h2>polyJsbridgeSdk.log</h2>
+        <button onClick="testLog(event);">Test</button>
+      </div>
+
+      <div>
+        <h2>polyJsbridgeSdk.getResgiterList</h2>
+        <button onClick="testGetResgiterList(event);">Test</button>
+      </div>
+
+      <div>
+        <h2>polyJsbridgeSdk.navigatorTo</h2>
+        <button onClick="testNavigatorTo(event);">Test</button>
+      </div>
+
+      <div>
+        <h2>polyJsbridgeSdk.redirectTo</h2>
+        <button onClick="testRedirectTo(event);">Test</button>
+      </div>
+
+      <div>
+        <h2>polyJsbridgeSdk.navigatorBack</h2>
+        <button onClick="testNavigatorBack(event);">Test</button>
+      </div>
+
+      <div>
+        <h2>polyJsbridgeSdk.exitApp</h2>
+        <button onClick="testExitApp(event);">Test</button>
+      </div>
+
+     
+
+
     </div>
   </body>
 </html>

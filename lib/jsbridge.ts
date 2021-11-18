@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-09-21 18:22:19
- * @LastEditTime: 2021-11-16 16:27:47
+ * @LastEditTime: 2021-11-18 15:46:01
  * @Description:
  *
  */
@@ -71,9 +71,9 @@ class Jsbridge {
         this.sendMessage(message);
       });
     } else {
-      console.error('does not support easy-jsbridge-sdk');
+      console.error('does not support poly-jsbridge-sdk');
       return new Promise((resolve, reject) => {
-        reject('does not support easy-jsbridge-sdk');
+        reject('does not support poly-jsbridge-sdk');
       });
     }
   }
@@ -121,9 +121,9 @@ class Jsbridge {
 
   /**
    * Generate the message
-   *   {"method":"toast","payload":{"message":"你好"},"callbackId":"app_sdk_callback_1632727252090577"}
+   *   {"method":"toast","payload":{"message":"你好"},"callbackId":"poly_sdk_callback_1632727252090577"}
    *   or
-   *   flutter://toast?payload=%7B%22message%22%3A%22say%20hello%22%7D?callbackId=app_sdk_callback_163699755451280 
+   *   poly://toast?payload=%7B%22message%22%3A%22say%20hello%22%7D?callbackId=poly_sdk_callback_163699755451280 
    */
   private generateMessage(
     method: string,
@@ -144,6 +144,7 @@ class Jsbridge {
 
       return JSON.stringify(message);
     } else {
+      
       const payloadData = this.encode(payload);
       let message = this.config.protocol
         .concat(method)
@@ -151,7 +152,7 @@ class Jsbridge {
         .concat(payloadData);
         
       if (callbackId) {
-        message = message.concat('?callbackId=').concat(callbackId);
+        message = message.concat('&callbackId=').concat(callbackId);
       }
 
       return message;
@@ -182,11 +183,11 @@ class Jsbridge {
   }
 
   /**
-   * Generate random string, begin with `app_sdk_callback_[random]`
+   * Generate random string, begin with `poly_sdk_callback_[random]`
    */
   private getCallbackId(): string {
     const random = parseInt(Math.random() * 10000 + '');
-    return 'app_sdk_callback_' + new Date().getTime() + random;
+    return 'poly_sdk_callback_' + new Date().getTime() + random;
   }
 
   /**

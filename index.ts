@@ -5,13 +5,13 @@
  * @Description:
  *
  */
-import EasyJsbridgeSdk from './lib/sdk';
+import PolyJsbridgeSdk from './lib/sdk';
 import Jsbridge from './lib/jsbridge';
 import { defaultConfig } from './lib/config';
 import { SendModeEnum, ClientResponse, Config } from './lib/type';
 
 export {
-  EasyJsbridgeSdk,
+  PolyJsbridgeSdk,
   Jsbridge,
   defaultConfig,
   SendModeEnum,
@@ -19,4 +19,4 @@ export {
   ClientResponse,
 };
 
-export default EasyJsbridgeSdk 
+export default PolyJsbridgeSdk 

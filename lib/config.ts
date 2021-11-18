@@ -11,6 +11,6 @@ export const defaultConfig: Config = {
   mode: 'channel', // url
   maxTryTimes: 3,
   isDebug: true,
-  protocol: 'flutter://',
-  JavascriptChannelName: 'AppSdk',
+  protocol: 'poly://',
+  JavascriptChannelName: 'PolySdk',
 };

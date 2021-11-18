@@ -1,7 +1,7 @@
 /*
  * @Author: hsycc
  * @Date: 2021-11-16 11:36:30
- * @LastEditTime: 2021-11-17 14:26:29
+ * @LastEditTime: 2021-11-18 13:58:30
  * @Description:
  *
  */
@@ -9,7 +9,7 @@
 'use strict';
 import { assert } from 'chai';
 import { JSDOM } from 'jsdom';
-import EasyJsbridgeSdk from '../lib/sdk';
+import PolyJsbridgeSdk from '../lib/sdk';
 import { SendModeEnum } from '../lib/type';
 
 // add browser env
@@ -18,31 +18,31 @@ const window = new JSDOM(``, { runScripts: 'outside-only' }).window;
 global.window = window;
 global.document = window.document;
 
-describe('init EasyJsbridgeSdk', () => {
+describe('test init', () => {
   it('Mode JavascriptChannel', () => {
-    window.AppSdk = {
+    window.PolySdk = {
       postMessage(msg: string) {
         return msg;
       },
     };
-    const easyJsbridgeSdk: EasyJsbridgeSdk = new EasyJsbridgeSdk({
+    const polyJsbridgeSdk: PolyJsbridgeSdk = new PolyJsbridgeSdk({
       mode: SendModeEnum.CHANNEL,
       maxTryTimes: 3,
       isDebug: true,
       protocol: '',
-      JavascriptChannelName: 'AppSdk',
+      JavascriptChannelName: 'PolySdk',
     });
-    assert(easyJsbridgeSdk.toast('say hello', true))
+    assert(polyJsbridgeSdk.toast('say hello', true))
   });
 
   it('Mode navigationDelegate', () => {
-    const easyJsbridgeSdk: EasyJsbridgeSdk = new EasyJsbridgeSdk({
+    const polyJsbridgeSdk: PolyJsbridgeSdk = new PolyJsbridgeSdk({
       mode: SendModeEnum.URL,
       maxTryTimes: 3,
       isDebug: true,
-      protocol: 'flutter://',
+      protocol: 'poly://',
       JavascriptChannelName: '',
     });
-    assert(easyJsbridgeSdk.toast('say hello', true))
+    assert(polyJsbridgeSdk.toast('say hello', true))
   });
 });

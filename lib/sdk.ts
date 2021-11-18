@@ -1,8 +1,8 @@
 /*
  * @Author: hsycc
  * @Date: 2021-09-21 18:16:35
- * @LastEditTime: 2021-11-17 12:48:44
- * @Description:ts
+ * @LastEditTime: 2021-11-18 10:41:17
+ * @Description:
  *
  */
 
@@ -10,7 +10,7 @@ import { defaultConfig } from './config';
 import Jsbridge from './jsbridge';
 import type { ClientResponse, Config } from './type';
 
-class EasyJsbridgeSdk {
+class PolyJsbridgeSdk {
   $jsbridge: Jsbridge;
   $register: (name: string) => void;
   $off: (name: string, func?: any) => any;
@@ -33,11 +33,11 @@ class EasyJsbridgeSdk {
   }
 
   /**
-   *  _init register  to native eval
+   *  _init register function to app call.
    */
-  private async _init(): Promise<void> {
+  public async _init(): Promise<void> {
     // @ts-ignore
-    window.$jsbridge = this.$jsbridge 
+    window.$jsbridge = this.$jsbridge;
     this.$register('log');
     this.$on('log', (result: any) => {
       console.log(result);
@@ -47,7 +47,7 @@ class EasyJsbridgeSdk {
   /**
    * exit  app
    */
-  exitApp(): Promise<ClientResponse> {
+  public exitApp(): Promise<ClientResponse> {
     return this.$jsbridge.$call('exitApp', {}, false);
   }
 
@@ -57,7 +57,7 @@ class EasyJsbridgeSdk {
    * @param message
    * @param hasCallback
    */
-  toast(
+  public toast(
     message: string,
     hasCallback: boolean | string = false
   ): Promise<ClientResponse> {
@@ -77,19 +77,86 @@ class EasyJsbridgeSdk {
    * @param hasCallback
    */
 
-  print(
+  public log(
     message: any,
     hasCallback: boolean | string = false
   ): Promise<ClientResponse> | null {
     return this.$jsbridge.$call(
-      'print',
+      'log',
       {
         message,
       },
       hasCallback
     );
   }
+
+  /**
+   * app navigator to
+   *
+   * @param url
+   * @param hasCallback
+   */
+  public navigatorTo(
+    url: string,
+    hasCallback: boolean | string = false
+  ): Promise<ClientResponse> {
+    return this.$jsbridge.$call(
+      'navigatorTo',
+      {
+        url,
+      },
+      hasCallback
+    );
+  }
+
+  /**
+   * app navigator back
+   *
+   * @param url
+   * @param
+   */
+  public navigatorBack(
+    url: string,
+    hasCallback: boolean | string = false
+  ): Promise<ClientResponse> {
+    return this.$jsbridge.$call(
+      'navigatorBack',
+      {
+        url,
+      },
+      hasCallback
+    );
+  }
+
+  /**
+   * redirec current app page to url
+   *
+   * @param url
+   * @param hasCallback
+   */
+  public redirectTo(
+    url: string,
+    hasCallback: boolean | string = false
+  ): Promise<ClientResponse> {
+    return this.$jsbridge.$call(
+      'redirectTo',
+      {
+        url,
+      },
+      hasCallback
+    );
+  }
+
+  /**
+   * get app resgiter list
+   *
+   */
+  public getResgiterList(
+    hasCallback: boolean | string = true
+  ): Promise<ClientResponse> {
+    return this.$jsbridge.$call('getResgiterList', {}, hasCallback);
+  }
 }
 
-export type { EasyJsbridgeSdk };
-export default EasyJsbridgeSdk;
+export type { PolyJsbridgeSdk };
+export default PolyJsbridgeSdk;
