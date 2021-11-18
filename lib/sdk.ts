@@ -1,9 +1,9 @@
-/*
+/**
+ * @format
  * @Author: hsycc
  * @Date: 2021-09-21 18:16:35
  * @LastEditTime: 2021-11-18 10:41:17
  * @Description:
- *
  */
 
 import { defaultConfig } from './config';
@@ -15,11 +15,7 @@ class PolyJsbridgeSdk {
   $register: (name: string) => void;
   $off: (name: string, func?: any) => any;
   $on: (name: string, func: any) => any;
-  $call: (
-    method: string,
-    payload: object,
-    hasCallback: boolean | string
-  ) => Promise<any>;
+  $call: (method: string, payload: object, hasCallback: boolean | string) => Promise<any>;
 
   constructor(config?: Config) {
     config = Object.assign(defaultConfig, config || {});
@@ -57,16 +53,13 @@ class PolyJsbridgeSdk {
    * @param message
    * @param hasCallback
    */
-  public toast(
-    message: string,
-    hasCallback: boolean | string = false
-  ): Promise<ClientResponse> {
+  public toast(message: string, hasCallback: boolean | string = false): Promise<ClientResponse> {
     return this.$jsbridge.$call(
       'toast',
       {
         message,
       },
-      hasCallback
+      hasCallback,
     );
   }
 
@@ -77,16 +70,13 @@ class PolyJsbridgeSdk {
    * @param hasCallback
    */
 
-  public log(
-    message: any,
-    hasCallback: boolean | string = false
-  ): Promise<ClientResponse> | null {
+  public log(message: any, hasCallback: boolean | string = false): Promise<ClientResponse> | null {
     return this.$jsbridge.$call(
       'log',
       {
         message,
       },
-      hasCallback
+      hasCallback,
     );
   }
 
@@ -96,16 +86,13 @@ class PolyJsbridgeSdk {
    * @param url
    * @param hasCallback
    */
-  public navigatorTo(
-    url: string,
-    hasCallback: boolean | string = false
-  ): Promise<ClientResponse> {
+  public navigatorTo(url: string, hasCallback: boolean | string = false): Promise<ClientResponse> {
     return this.$jsbridge.$call(
       'navigatorTo',
       {
         url,
       },
-      hasCallback
+      hasCallback,
     );
   }
 
@@ -115,16 +102,13 @@ class PolyJsbridgeSdk {
    * @param url
    * @param
    */
-  public navigatorBack(
-    url: string,
-    hasCallback: boolean | string = false
-  ): Promise<ClientResponse> {
+  public navigatorBack(url: string, hasCallback: boolean | string = false): Promise<ClientResponse> {
     return this.$jsbridge.$call(
       'navigatorBack',
       {
         url,
       },
-      hasCallback
+      hasCallback,
     );
   }
 
@@ -134,16 +118,13 @@ class PolyJsbridgeSdk {
    * @param url
    * @param hasCallback
    */
-  public redirectTo(
-    url: string,
-    hasCallback: boolean | string = false
-  ): Promise<ClientResponse> {
+  public redirectTo(url: string, hasCallback: boolean | string = false): Promise<ClientResponse> {
     return this.$jsbridge.$call(
       'redirectTo',
       {
         url,
       },
-      hasCallback
+      hasCallback,
     );
   }
 
@@ -151,9 +132,7 @@ class PolyJsbridgeSdk {
    * get app resgiter list
    *
    */
-  public getResgiterList(
-    hasCallback: boolean | string = true
-  ): Promise<ClientResponse> {
+  public getResgiterList(hasCallback: boolean | string = true): Promise<ClientResponse> {
     return this.$jsbridge.$call('getResgiterList', {}, hasCallback);
   }
 }

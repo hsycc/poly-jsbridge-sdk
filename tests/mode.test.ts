@@ -1,9 +1,9 @@
-/*
+/**
+ * @format
  * @Author: hsycc
  * @Date: 2021-11-16 11:36:30
  * @LastEditTime: 2021-11-18 13:58:30
  * @Description:
- *
  */
 
 'use strict';
@@ -14,7 +14,7 @@ import { SendModeEnum } from '../lib/type';
 
 // add browser env
 const window = new JSDOM(``, { runScripts: 'outside-only' }).window;
-// @ts-ignore 
+// @ts-ignore
 global.window = window;
 global.document = window.document;
 
@@ -32,7 +32,7 @@ describe('test init', () => {
       protocol: '',
       JavascriptChannelName: 'PolySdk',
     });
-    assert(polyJsbridgeSdk.toast('say hello', true))
+    assert(polyJsbridgeSdk.toast('say hello', true));
   });
 
   it('Mode navigationDelegate', () => {
@@ -43,6 +43,6 @@ describe('test init', () => {
       protocol: 'poly://',
       JavascriptChannelName: '',
     });
-    assert(polyJsbridgeSdk.toast('say hello', true))
+    assert(polyJsbridgeSdk.toast('say hello', true));
   });
 });

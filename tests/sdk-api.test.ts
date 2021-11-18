@@ -1,9 +1,9 @@
-/*
+/**
+ * @format
  * @Author: hsycc
  * @Date: 2021-11-16 11:36:30
  * @LastEditTime: 2021-11-18 11:04:43
  * @Description:
- *
  */
 
 'use strict';
@@ -33,15 +33,15 @@ const polyJsbridgeSdk: PolyJsbridgeSdk = new PolyJsbridgeSdk({
 
 describe('test sdk api', () => {
   it('check window.$jsbridge', () => {
-    assert(polyJsbridgeSdk._init())
+    assert(polyJsbridgeSdk._init());
     assert(window.$jsbridge);
   });
 
   it('check register function log', () => {
-    assert(polyJsbridgeSdk._init())
+    assert(polyJsbridgeSdk._init());
     assert(window.$jsbridge.log);
 
-    window.$jsbridge.log('print register.log')
+    window.$jsbridge.log('print register.log');
   });
 
   it('check toast', () => {

@@ -5,6 +5,7 @@
   "main": "index.js",
   "browser": "browser/polyJsbridgeSdk.min.js",
   "scripts": {
+    "fix": "prettier --write  ./lib ./tests",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s 0",
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec dist/tests/*.js",
     "cover:publish": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec dist/tests/*.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
@@ -13,6 +14,11 @@
     "build-browser": "webpack --config webpack.dev.js && webpack --config webpack.prod.js",
     "build": "npm run clean && tsc -p  tsconfig.json && npm run build-browser",
     "clean": "rm -rf ./dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run fix && git add ."
+    }
   },
   "keywords": [
     "typescript"
@@ -39,10 +45,13 @@
     "copy-webpack-plugin": "^9.1.0",
     "coveralls": "^3.1.1",
     "cz-conventional-changelog": "^3.3.0",
+    "husky": "^7.0.4",
     "istanbul": "^0.4.5",
     "jsdom": "^18.1.0",
+    "lint-staged": "^12.0.2",
     "mocha": "^9.0.1",
     "mocha-lcov-reporter": "^1.3.0",
+    "prettier": "^2.4.1",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4",

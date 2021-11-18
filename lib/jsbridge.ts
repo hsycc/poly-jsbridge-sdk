@@ -1,9 +1,9 @@
-/*
+/**
+ * @format
  * @Author: hsycc
  * @Date: 2021-09-21 18:22:19
  * @LastEditTime: 2021-11-18 15:46:01
  * @Description:
- *
  */
 
 import { Config, ClientResponse, SendModeEnum } from './type';
@@ -19,15 +19,10 @@ class Jsbridge {
     this.event = new EventEmitter();
     this.config = config;
     this.isInBrowser = !!(typeof window !== 'undefined');
-   
   }
 
   /** call message and send to client */
-  public $call(
-    method: string,
-    payload: object,
-    hasCallback: boolean | string
-  ): Promise<ClientResponse> {
+  public $call(method: string, payload: object, hasCallback: boolean | string): Promise<ClientResponse> {
     payload = payload || {};
     // in browser
     if (this.isInBrowser) {
@@ -51,9 +46,7 @@ class Jsbridge {
               console.debug(`[${callbackId}]:`, result);
             }
             try {
-              if (
-                result.code === 200
-              ) {
+              if (result.code === 200) {
                 resolve(result);
               } else {
                 // status code error
@@ -123,13 +116,9 @@ class Jsbridge {
    * Generate the message
    *   {"method":"toast","payload":{"message":"你好"},"callbackId":"poly_sdk_callback_1632727252090577"}
    *   or
-   *   poly://toast?payload=%7B%22message%22%3A%22say%20hello%22%7D?callbackId=poly_sdk_callback_163699755451280 
+   *   poly://toast?payload=%7B%22message%22%3A%22say%20hello%22%7D?callbackId=poly_sdk_callback_163699755451280
    */
-  private generateMessage(
-    method: string,
-    payload: object | {},
-    callbackId?: string
-  ): string {
+  private generateMessage(method: string, payload: object | {}, callbackId?: string): string {
     if (this.config.mode === SendModeEnum.CHANNEL) {
       const message = {
         method,
@@ -144,13 +133,9 @@ class Jsbridge {
 
       return JSON.stringify(message);
     } else {
-      
       const payloadData = this.encode(payload);
-      let message = this.config.protocol
-        .concat(method)
-        .concat('?payload=')
-        .concat(payloadData);
-        
+      let message = this.config.protocol.concat(method).concat('?payload=').concat(payloadData);
+
       if (callbackId) {
         message = message.concat('&callbackId=').concat(callbackId);
       }
@@ -167,7 +152,7 @@ class Jsbridge {
    */
   private encode(obj: object): string {
     const json = JSON.stringify(obj);
-    return encodeURIComponent(json)
+    return encodeURIComponent(json);
   }
 
   /**
@@ -231,8 +216,6 @@ class Jsbridge {
       throw new Error('Method not implemented.');
     }
   }
-
-
 }
 
 export default Jsbridge;

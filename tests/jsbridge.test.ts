@@ -1,9 +1,9 @@
-/*
+/**
+ * @format
  * @Author: hsycc
  * @Date: 2021-11-16 11:36:30
  * @LastEditTime: 2021-11-18 14:50:55
  * @Description:
- *
  */
 
 'use strict';
@@ -23,7 +23,7 @@ window.PolySdk = {
     return msg;
   },
 };
-const $jsbridge:any = new Jsbridge({
+const $jsbridge: any = new Jsbridge({
   mode: SendModeEnum.CHANNEL,
   maxTryTimes: 3,
   isDebug: true,
@@ -36,7 +36,6 @@ describe('test jsbridge', () => {
     assert($jsbridge.$register);
     $jsbridge.$register('log2');
     console.log('      register log2');
-    
   });
 
   it('$on', () => {
@@ -46,14 +45,14 @@ describe('test jsbridge', () => {
     assert($jsbridge.log2);
     assert($jsbridge.event._events.log2);
 
-    $jsbridge.log2() // event emit event._events.log2
+    $jsbridge.log2(); // event emit event._events.log2
   });
 
   it('$off', () => {
-    assert($jsbridge.event._events.log2); 
-    $jsbridge.$off('log2')
+    assert($jsbridge.event._events.log2);
+    $jsbridge.$off('log2');
     try {
-      assert($jsbridge.event._events.log2);  
+      assert($jsbridge.event._events.log2);
     } catch (error) {
       console.log('      removeListener event log2');
     }

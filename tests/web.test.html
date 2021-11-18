@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,17 +13,14 @@
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
         var results = regex.exec(location.search);
-        return results === null
-          ? ''
-          : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
       }
 
       const EXECUTING = 'Executing Test',
         SUCCESS = 'Success',
         FAILED = 'Failed';
 
-      const waitOneSecond = () =>
-        new Promise((resolve) => setTimeout(resolve, 1000));
+      const waitOneSecond = () => new Promise(resolve => setTimeout(resolve, 1000));
 
       let mode = getUrlParameter('mode') || 'channel';
 
@@ -55,7 +54,7 @@
         return;
       };
 
-      const testToast = async (e) => {
+      const testToast = async e => {
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
@@ -71,7 +70,7 @@
         }
       };
 
-      const testLog = async (e) => {
+      const testLog = async e => {
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
@@ -87,7 +86,7 @@
         }
       };
 
-      const testGetResgiterList = async (e) => {
+      const testGetResgiterList = async e => {
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
@@ -104,7 +103,7 @@
         }
       };
 
-      const testNavigatorTo = async (e) => {
+      const testNavigatorTo = async e => {
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
@@ -120,7 +119,7 @@
         }
       };
 
-      const testRedirectTo = async (e) => {
+      const testRedirectTo = async e => {
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
@@ -136,7 +135,7 @@
         }
       };
 
-      const testNavigatorBack = async (e) => {
+      const testNavigatorBack = async e => {
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
@@ -152,9 +151,7 @@
         }
       };
 
-
-
-      const testExitApp = async (e) => {
+      const testExitApp = async e => {
         resultsLabel = e.target;
         resultsLabel.innerText = EXECUTING;
         try {
@@ -214,10 +211,6 @@
         <h2>polyJsbridgeSdk.exitApp</h2>
         <button onClick="testExitApp(event);">Test</button>
       </div>
-
-     
-
-
     </div>
   </body>
 </html>
