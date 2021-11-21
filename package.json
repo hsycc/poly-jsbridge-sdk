@@ -1,8 +1,8 @@
 {
   "name": "poly-jsbridge-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple jsbridge protocol scheme.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "browser": "browser/polyJsbridgeSdk.min.js",
   "scripts": {
     "lint": "eslint --ext .tsx,.ts,.js,.jsx --fix ./lib ./tests",
@@ -47,10 +47,10 @@
     "@typescript-eslint/parser": "^4.33.0",
     "chai": "^4.3.4",
     "commitizen": "^4.2.4",
+    "conventional-changelog-cli": "^2.1.1",
     "copy-webpack-plugin": "^9.1.0",
     "coveralls": "^3.1.1",
     "cz-conventional-changelog": "^3.3.0",
-    "conventional-changelog-cli": "^2.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^4.0.0",

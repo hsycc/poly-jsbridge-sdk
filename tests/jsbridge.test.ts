@@ -12,6 +12,8 @@ import { JSDOM } from 'jsdom';
 import Jsbridge from '../lib/jsbridge';
 import { SendModeEnum } from '../lib/type';
 
+// import { Jsbridge, SendModeEnum } from 'poly-jsbridge-sdk/dist';
+
 // add browser env
 const window = new JSDOM(``, { runScripts: 'outside-only' }).window;
 // @ts-ignore

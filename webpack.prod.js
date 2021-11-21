@@ -1,11 +1,13 @@
-/*
+/**
+ *
+ * @format
  * @Author: hsycc
  * @Date: 2021-06-28 18:52:24
- * @LastEditTime: 2021-11-18 13:59:53
+ * @LastEditTime: 2021-11-21 14:58:36
  * @Description:
- *
  */
 
+/* eslint-disable */
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { merge } = require('webpack-merge');
@@ -15,8 +17,7 @@ module.exports = merge(devConfig, {
   mode: 'production',
   devtool: false,
   output: {
-    filename: (x) =>
-      x.chunk.name.replace(/^\S/, (s) => s.toLowerCase()) + '.min.js',
+    filename: x => x.chunk.name.replace(/^\S/, s => s.toLowerCase()) + '.min.js',
     library: '[name]',
     path: path.resolve(__dirname, 'dist/browser'),
   },
@@ -32,14 +33,14 @@ module.exports = merge(devConfig, {
           from: path.resolve(__dirname, 'tests/*.css'),
           to: path.resolve(__dirname, 'dist/'),
         },
-        {
-          from: path.resolve(__dirname, 'README.md'),
-          to: path.resolve(__dirname, 'dist/'),
-        },
-        {
-          from: path.resolve(__dirname, 'CHANGELOG.md'),
-          to: path.resolve(__dirname, 'dist/'),
-        },
+        // {
+        //   from: path.resolve(__dirname, 'README.md'),
+        //   to: path.resolve(__dirname, 'dist/'),
+        // },
+        // {
+        //   from: path.resolve(__dirname, 'CHANGELOG.md'),
+        //   to: path.resolve(__dirname, 'dist/'),
+        // },
       ],
     }),
   ],
